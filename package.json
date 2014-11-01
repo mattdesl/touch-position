@@ -1,6 +1,6 @@
 {
   "name": "touch-position",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "get current touch/mouse position",
   "main": "index.js",
   "license": "MIT",
