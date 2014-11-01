@@ -23,6 +23,7 @@ Returns a vector with the mouse or touch [x, y] on the window. Options:
 
 - `element` the element to attach the events to, defaults to `window`
 - `touchstart` whether to change position on `touchstart` and `mousedown` events as well (default true)
+- `position` the initial position to start with (i.e. before any events are triggered), default is `[0, 0]`
 
 #### `touchPosition.emitter([opt])`
 
