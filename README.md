@@ -2,7 +2,7 @@
 
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
-Gets the current mouse/touch position as a 2-component vector.
+Gets the current mouse/touch position as a 2-component vector. By default, attaches mouse and touch events to `window`.
 
 ```js
 var position = require('touch-position')()
