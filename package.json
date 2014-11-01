@@ -1,0 +1,40 @@
+{
+  "name": "touch-position",
+  "version": "1.0.0",
+  "description": "get current touch/mouse position",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "add-event-listener": "0.0.1",
+    "events": "^1.0.2",
+    "mouse-event-offset": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "touch",
+    "mouse",
+    "position",
+    "move",
+    "mousemove",
+    "touchmove",
+    "touchstart",
+    "window",
+    "vector"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/touch-position.git"
+  },
+  "homepage": "https://github.com/mattdesl/touch-position",
+  "bugs": {
+    "url": "https://github.com/mattdesl/touch-position/issues"
+  }
+}
