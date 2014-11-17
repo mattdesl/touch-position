@@ -12,7 +12,7 @@
   "dependencies": {
     "add-event-listener": "0.0.1",
     "events": "^1.0.2",
-    "mouse-event-offset": "^1.0.2"
+    "mouse-event-offset": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {
