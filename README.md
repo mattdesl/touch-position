@@ -25,7 +25,7 @@ Returns a vector with the mouse or touch [x, y] on the window. Options:
 - `touchstart` whether to change position on `touchstart` and `mousedown` events as well (default true)
 - `position` the initial position to start with (i.e. before any events are triggered), default is `[0, 0]`
 
-#### `touchPosition.emitter([opt])`
+#### `emitter = touchPosition.emitter([opt])`
 
 The same as above, but returns an `EventEmitter` so you can handle move events:
 
@@ -34,6 +34,16 @@ var touch = require('touch-position').emitter()
 touch.on('move', handleMove)
 
 console.log( touch.position ) // the current [x,y] position
+```
+
+#### `emitter.dispose()`
+
+Removes any attached event listeners from `element` when you no longer need it. After calling this method, `touch.position` will no longer update and the `move` event will stop firing.
+
+```js
+var touch = require('touch-position').emitter()
+
+touch.dispose()
 ```
 
 ## License
