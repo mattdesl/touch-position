@@ -1,55 +1,48 @@
-var addEvent = require('add-event-listener')
-var offset = require('mouse-event-offset')
-var Emitter = require('events/')
+var addEvent = require('add-event-listener');
+var offset = require('mouse-event-offset');
+var EventEmitter = require('events').EventEmitter;
 
-function attach(opt) {
-    opt = opt||{}
-    opt.element = opt.element || window
+function attach (opt) {
+  opt = opt || {};
+  var element = opt.element || window;
 
-    var emitter = new Emitter()
+  var emitter = new EventEmitter();
 
-    var position = opt.position || [0, 0]
-    if (opt.touchstart !== false) {
-        addEvent(opt.element, 'mousedown', update)
-        addEvent(opt.element, 'touchstart', touchstart)
-    }
+  var position = opt.position || [0, 0];
+  if (opt.touchstart !== false) {
+    addEvent(element, 'mousedown', update);
+    addEvent(element, 'touchstart', updateTouch);
+  }
 
-    addEvent(opt.element, 'mousemove', update)
-    addEvent(opt.element, 'touchmove', touchmove)
+  addEvent(element, 'mousemove', update);
+  addEvent(element, 'touchmove', updateTouch);
 
-    emitter.position = position
-    emitter.dispose = dispose
-    return emitter
+  emitter.position = position;
+  emitter.dispose = dispose;
+  return emitter;
 
-    function touchstart(ev) {
-        var touch = ev.targetTouches[0]
-        update(ev, touch)
-    }
+  function updateTouch (ev) {
+    var touch = ev.targetTouches[0];
+    update(touch);
+  }
 
-    function touchmove(ev) {
-        var touch = ev.targetTouches[0]
-        update(ev, touch)
-    }
+  function update (ev) {
+    offset(ev, element, position);
+    emitter.emit('move', ev);
+  }
 
-    function update(ev, client) {
-        var pos = offset(ev, client)
-        position[0] = pos.x
-        position[1] = pos.y
-        emitter.emit('move', ev)
-    }
-
-    function dispose() {
-        addEvent.removeEventListener(opt.element, 'mousemove', update)
-        addEvent.removeEventListener(opt.element, 'mousedown', update)
-        addEvent.removeEventListener(opt.element, 'touchmove', touchmove)
-        addEvent.removeEventListener(opt.element, 'touchstart', touchstart)
-    }
+  function dispose () {
+    addEvent.removeEventListener(element, 'mousemove', update);
+    addEvent.removeEventListener(element, 'mousedown', update);
+    addEvent.removeEventListener(element, 'touchmove', updateTouch);
+    addEvent.removeEventListener(element, 'touchstart', updateTouch);
+  }
 }
 
-module.exports = function(opt) {
-    return attach(opt).position
-}
+module.exports = function (opt) {
+  return attach(opt).position;
+};
 
-module.exports.emitter = function(opt) {
-    return attach(opt)
-}
+module.exports.emitter = function (opt) {
+  return attach(opt);
+};
