@@ -1,4 +1,3 @@
-var addEvent = require('add-event-listener');
 var offset = require('mouse-event-offset');
 var EventEmitter = require('events').EventEmitter;
 
@@ -10,12 +9,12 @@ function attach (opt) {
 
   var position = opt.position || [0, 0];
   if (opt.touchstart !== false) {
-    addEvent(element, 'mousedown', update);
-    addEvent(element, 'touchstart', updateTouch);
+    element.addEventListener('mousedown', update, false);
+    element.addEventListener('touchstart', updateTouch, false);
   }
 
-  addEvent(element, 'mousemove', update);
-  addEvent(element, 'touchmove', updateTouch);
+  element.addEventListener('mousemove', update, false);
+  element.addEventListener('touchmove', updateTouch, false);
 
   emitter.position = position;
   emitter.dispose = dispose;
@@ -32,10 +31,10 @@ function attach (opt) {
   }
 
   function dispose () {
-    addEvent.removeEventListener(element, 'mousemove', update);
-    addEvent.removeEventListener(element, 'mousedown', update);
-    addEvent.removeEventListener(element, 'touchmove', updateTouch);
-    addEvent.removeEventListener(element, 'touchstart', updateTouch);
+    element.removeEventListener('mousemove', update, false);
+    element.removeEventListener('mousedown', update, false);
+    element.removeEventListener('touchmove', updateTouch, false);
+    element.removeEventListener('touchstart', updateTouch, false);
   }
 }
 

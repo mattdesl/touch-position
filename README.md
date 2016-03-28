@@ -13,6 +13,8 @@ function render () {
 }
 ```
 
+*Note:* Version 2.x and above no longer supports IE <= 8.
+
 ## Usage
 
 [![NPM](https://nodei.co/npm/touch-position.png)](https://nodei.co/npm/touch-position/)
